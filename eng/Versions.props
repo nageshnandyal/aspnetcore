@@ -137,8 +137,8 @@
     <SystemIOHashingVersion>9.0.0-preview.5.24272.1</SystemIOHashingVersion>
     <SystemRuntimeCachingVersion>9.0.0-preview.5.24272.1</SystemRuntimeCachingVersion>
     <!-- Packages from dotnet/extensions -->
-    <MicrosoftExtensionsDiagnosticsTestingVersion>9.0.0-preview.5.24301.1</MicrosoftExtensionsDiagnosticsTestingVersion>
-    <MicrosoftExtensionsTimeProviderTestingVersion>9.0.0-preview.5.24301.1</MicrosoftExtensionsTimeProviderTestingVersion>
+    <MicrosoftExtensionsDiagnosticsTestingVersion>9.0.0-preview.5.24308.1</MicrosoftExtensionsDiagnosticsTestingVersion>
+    <MicrosoftExtensionsTimeProviderTestingVersion>9.0.0-preview.5.24308.1</MicrosoftExtensionsTimeProviderTestingVersion>
     <!-- Packages from dotnet/efcore -->
     <dotnetefVersion>9.0.0-preview.5.24271.1</dotnetefVersion>
     <MicrosoftEntityFrameworkCoreInMemoryVersion>9.0.0-preview.5.24271.1</MicrosoftEntityFrameworkCoreInMemoryVersion>
@@ -165,13 +165,13 @@
     <MicrosoftDotNetRemoteExecutorVersion>9.0.0-beta.24272.5</MicrosoftDotNetRemoteExecutorVersion>
     <MicrosoftSourceBuildIntermediatearcadeVersion>9.0.0-beta.24272.5</MicrosoftSourceBuildIntermediatearcadeVersion>
     <!-- Packages from dotnet/source-build-externals -->
-    <MicrosoftSourceBuildIntermediatesourcebuildexternalsVersion>9.0.0-alpha.1.24278.2</MicrosoftSourceBuildIntermediatesourcebuildexternalsVersion>
+    <MicrosoftSourceBuildIntermediatesourcebuildexternalsVersion>9.0.0-alpha.1.24303.2</MicrosoftSourceBuildIntermediatesourcebuildexternalsVersion>
     <!-- Packages from dotnet/source-build-reference-packages -->
     <MicrosoftSourceBuildIntermediatesourcebuildreferencepackagesVersion>9.0.0-alpha.1.24304.1</MicrosoftSourceBuildIntermediatesourcebuildreferencepackagesVersion>
     <!-- Packages from dotnet/symreader -->
     <MicrosoftSourceBuildIntermediatesymreaderVersion>2.1.0-beta.24208.1</MicrosoftSourceBuildIntermediatesymreaderVersion>
     <!-- Packages from dotnet/winforms -->
-    <SystemDrawingCommonVersion>9.0.0-preview.6.24302.1</SystemDrawingCommonVersion>
+    <SystemDrawingCommonVersion>9.0.0-preview.6.24307.1</SystemDrawingCommonVersion>
     <!-- Packages from dotnet/xdt -->
     <MicrosoftWebXdtVersion>9.0.0-preview.24303.1</MicrosoftWebXdtVersion>
     <MicrosoftSourceBuildIntermediatexdtVersion>9.0.0-preview.24303.1</MicrosoftSourceBuildIntermediatexdtVersion>
@@ -334,7 +334,6 @@
     <XunitExtensibilityExecutionVersion>$(XunitVersion)</XunitExtensibilityExecutionVersion>
     <XUnitRunnerVisualStudioVersion>2.4.3</XUnitRunnerVisualStudioVersion>
     <MicrosoftDataSqlClientVersion>4.0.5</MicrosoftDataSqlClientVersion>
-    <MicrosoftAspNetCoreAppVersion>6.0.0-preview.3.21167.1</MicrosoftAspNetCoreAppVersion>
     <MicrosoftOpenApiVersion>1.6.13</MicrosoftOpenApiVersion>
     <MicrosoftOpenApiReadersVersion>1.6.13</MicrosoftOpenApiReadersVersion>
     <!-- dotnet tool versions (see also auto-updated DotnetEfVersion property). -->

@@ -368,9 +368,9 @@
       <Sha>745230568e52639e229dcc24c98fe0dbb4c1641d</Sha>
     </Dependency>
     <!-- Intermediate is necessary for source build. -->
-    <Dependency Name="Microsoft.SourceBuild.Intermediate.source-build-externals" Version="9.0.0-alpha.1.24278.2">
+    <Dependency Name="Microsoft.SourceBuild.Intermediate.source-build-externals" Version="9.0.0-alpha.1.24303.2">
       <Uri>https://github.com/dotnet/source-build-externals</Uri>
-      <Sha>f1b44a365df0b8dbc38403ee8696adc25fbdd76a</Sha>
+      <Sha>7db00527ef8fbbe61f67e9295beebddf187efff8</Sha>
       <SourceBuild RepoName="source-build-externals" ManagedOnly="true" />
     </Dependency>
   </ProductDependencies>
@@ -380,9 +380,9 @@
       <Uri>https://github.com/dotnet/runtime</Uri>
       <Sha>745230568e52639e229dcc24c98fe0dbb4c1641d</Sha>
     </Dependency>
-    <Dependency Name="System.Drawing.Common" Version="9.0.0-preview.6.24302.1">
+    <Dependency Name="System.Drawing.Common" Version="9.0.0-preview.6.24307.1">
       <Uri>https://github.com/dotnet/winforms</Uri>
-      <Sha>9f9d572dd4fdf6e55cf91548ab8ee18c8f003990</Sha>
+      <Sha>25717b4f5d6f00097dc9bc328a3d4652ad71414c</Sha>
     </Dependency>
     <Dependency Name="Microsoft.DotNet.Arcade.Sdk" Version="9.0.0-beta.24272.5">
       <Uri>https://github.com/dotnet/arcade</Uri>
@@ -410,13 +410,13 @@
       <Uri>https://github.com/dotnet/arcade</Uri>
       <Sha>2001d73c8ff942331a73300ba61fa6164805b231</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.Extensions.Diagnostics.Testing" Version="9.0.0-preview.5.24301.1">
+    <Dependency Name="Microsoft.Extensions.Diagnostics.Testing" Version="9.0.0-preview.5.24308.1">
       <Uri>https://github.com/dotnet/extensions</Uri>
-      <Sha>74a55056def261bb3b433ceb040dc4134a35f63e</Sha>
+      <Sha>c227151c582799fd22c5fe1f093846a2dd1eb00a</Sha>
     </Dependency>
-    <Dependency Name="Microsoft.Extensions.TimeProvider.Testing" Version="9.0.0-preview.5.24301.1">
+    <Dependency Name="Microsoft.Extensions.TimeProvider.Testing" Version="9.0.0-preview.5.24308.1">
       <Uri>https://github.com/dotnet/extensions</Uri>
-      <Sha>74a55056def261bb3b433ceb040dc4134a35f63e</Sha>
+      <Sha>c227151c582799fd22c5fe1f093846a2dd1eb00a</Sha>
     </Dependency>
     <Dependency Name="NuGet.Frameworks" Version="6.2.4">
       <Uri>https://github.com/nuget/nuget.client</Uri>
