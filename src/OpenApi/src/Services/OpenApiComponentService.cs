@@ -22,7 +22,7 @@ namespace Microsoft.AspNetCore.OpenApi;
 /// an OpenAPI document. In particular, this is the API that is used to
 /// interact with the JSON schemas that are managed by a given OpenAPI document.
 /// </summary>
-internal sealed class OpenApiComponentService(IOptions<JsonOptions> jsonOptions)
+internal sealed class OpenApiComponentService(IOptions<JsonOptions> jsonOptions, IXmlCommentService xmlCommentService)
 {
     private readonly ConcurrentDictionary<(Type, ParameterInfo?), JsonObject> _schemas = new()
     {
@@ -38,37 +38,39 @@ internal sealed class OpenApiComponentService(IOptions<JsonOptions> jsonOptions)
     };
 
     private readonly JsonSerializerOptions _jsonSerializerOptions = jsonOptions.Value.SerializerOptions;
-    private readonly JsonSchemaMapperConfiguration _configuration = new()
-    {
-        OnSchemaGenerated = (context, schema) =>
-        {
-            var type = context.TypeInfo.Type;
-            // Fix up schemas generated for IFormFile, IFormFileCollection, Stream, and PipeReader
-            // that appear as properties within complex types.
-            if (type == typeof(IFormFile) || type == typeof(Stream) || type == typeof(PipeReader))
-            {
-                schema.Clear();
-                schema[OpenApiSchemaKeywords.TypeKeyword] = "string";
-                schema[OpenApiSchemaKeywords.FormatKeyword] = "binary";
-            }
-            else if (type == typeof(IFormFileCollection))
-            {
-                schema.Clear();
-                schema[OpenApiSchemaKeywords.TypeKeyword] = "array";
-                schema[OpenApiSchemaKeywords.ItemsKeyword] = new JsonObject
-                {
-                    [OpenApiSchemaKeywords.TypeKeyword] = "string",
-                    [OpenApiSchemaKeywords.FormatKeyword] = "binary"
-                };
-            }
-            schema.ApplyPrimitiveTypesAndFormats(type);
-            if (context.GetCustomAttributes(typeof(ValidationAttribute)) is { } validationAttributes)
-            {
-                schema.ApplyValidationAttributes(validationAttributes);
-            }
 
+    private void OnSchemaGenerated(JsonSchemaGenerationContext context, JsonObject schema)
+    {
+        var type = context.TypeInfo.Type;
+        // Fix up schemas generated for IFormFile, IFormFileCollection, Stream, and PipeReader
+        // that appear as properties within complex types.
+        if (type == typeof(IFormFile) || type == typeof(Stream) || type == typeof(PipeReader))
+        {
+            schema.Clear();
+            schema[OpenApiSchemaKeywords.TypeKeyword] = "string";
+            schema[OpenApiSchemaKeywords.FormatKeyword] = "binary";
         }
-    };
+        else if (type == typeof(IFormFileCollection))
+        {
+            schema.Clear();
+            schema[OpenApiSchemaKeywords.TypeKeyword] = "array";
+            schema[OpenApiSchemaKeywords.ItemsKeyword] = new JsonObject
+            {
+                [OpenApiSchemaKeywords.TypeKeyword] = "string",
+                [OpenApiSchemaKeywords.FormatKeyword] = "binary"
+            };
+        }
+        schema.ApplyPrimitiveTypesAndFormats(type);
+        if (context.GetCustomAttributes(typeof(ValidationAttribute)) is { } validationAttributes)
+        {
+            schema.ApplyValidationAttributes(validationAttributes);
+        }
+        if (context.PropertyInfo is not null)
+        {
+            schema.ApplyXmlComments(xmlCommentService, type, context.PropertyInfo.);
+        }
+        schema.ApplyXmlComments(xmlCommentService, type, null);
+    }
 
     internal OpenApiSchema GetOrCreateSchema(Type type, ApiParameterDescription? parameterDescription = null)
     {
@@ -85,7 +87,10 @@ internal sealed class OpenApiComponentService(IOptions<JsonOptions> jsonOptions)
     }
 
     private JsonObject CreateSchema((Type Type, ParameterInfo? ParameterInfo) key)
-        => key.ParameterInfo is not null
-            ? JsonSchemaMapper.JsonSchemaMapper.GetJsonSchema(_jsonSerializerOptions, key.ParameterInfo, _configuration)
-            : JsonSchemaMapper.JsonSchemaMapper.GetJsonSchema(_jsonSerializerOptions, key.Type, _configuration);
+    {
+        var configuration = new JsonSchemaMapperConfiguration { OnSchemaGenerated = OnSchemaGenerated };
+        return key.ParameterInfo is not null
+            ? JsonSchemaMapper.JsonSchemaMapper.GetJsonSchema(_jsonSerializerOptions, key.ParameterInfo, configuration)
+            : JsonSchemaMapper.JsonSchemaMapper.GetJsonSchema(_jsonSerializerOptions, key.Type, configuration);
+    }
 }

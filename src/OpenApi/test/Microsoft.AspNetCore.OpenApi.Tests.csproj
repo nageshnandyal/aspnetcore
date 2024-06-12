@@ -20,6 +20,9 @@
     <Reference Include="Microsoft.Extensions.Hosting.Abstractions" />
     <Reference Include="Microsoft.AspNetCore.OpenApi" />
     <Reference Include="Verify.XUnit" />
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.XUnit" />
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+    <Reference Include="Microsoft.CodeAnalysis.CSharp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,5 +40,9 @@
 
   <ItemGroup>
     <HelixContent Include="$(MSBuildProjectDirectory)\Integration\snapshots\**" LinkBase="$(MSBuildThisFileDirectory)\Integration\snapshots"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\gen\Microsoft.AspNetCore.OpenApi.SourceGenerators.csproj" />
   </ItemGroup>
 </Project>

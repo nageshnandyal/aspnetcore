@@ -7,6 +7,9 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http;
 
+/// <summary>
+/// Represents a todo item.
+/// </summary>
 internal record Todo(int Id, string Title, bool Completed, DateTime CreatedAt);
 
 internal record TodoWithDueDate(int Id, string Title, bool Completed, DateTime CreatedAt, DateTime DueDate) : Todo(Id, Title, Completed, CreatedAt);

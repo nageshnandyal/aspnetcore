@@ -217,7 +217,9 @@ public abstract class OpenApiDocumentServiceTestBase
         public static TestServiceProvider Instance { get; } = new TestServiceProvider();
         private IKeyedServiceProvider _serviceProvider;
         internal OpenApiDocumentService TestDocumentService { get; set; }
-        internal OpenApiComponentService TestComponentService { get; set; } = new OpenApiComponentService(Options.Create(new Microsoft.AspNetCore.Http.Json.JsonOptions()));
+        internal OpenApiComponentService TestComponentService { get; set; } = new OpenApiComponentService(
+            Options.Create(new Microsoft.AspNetCore.Http.Json.JsonOptions()),
+            new XmlCommentService());
 
         public void SetInternalServiceProvider(IServiceCollection serviceCollection)
         {
@@ -270,6 +272,15 @@ public abstract class OpenApiDocumentServiceTestBase
             }
 
             return _serviceProvider.GetService(serviceType);
+        }
+    }
+
+    private class XmlCommentService : IXmlCommentService
+    {
+        public bool TryGetXmlComment((Type, PropertyInfo) key, out string summary)
+        {
+            summary = null;
+            return false;
         }
     }
 }

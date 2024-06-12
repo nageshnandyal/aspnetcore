@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 #pragma warning restore IL2026
 builder.Services.AddAuthentication().AddJwtBearer();
 
+builder.Services.AddXmlServices();
 builder.Services.AddOpenApi("v1", options =>
 {
     options.AddHeader("X-Version", "1.0");
@@ -63,6 +64,9 @@ var v2 = app.MapGroup("v2")
 var responses = app.MapGroup("responses")
     .WithGroupName("responses");
 
+app.MapGet("/test-class", (TestClass testClass) => testClass);
+
+#region hide
 v1.MapGet("/array-of-guids", (Guid[] guids) => guids);
 
 v1.MapPost("/todos", (Todo todo) => Results.Created($"/todos/{todo.Id}", todo))
@@ -84,6 +88,8 @@ responses.MapGet("/200-only-xml", () => new TodoWithDueDate(1, "Test todo", fals
 responses.MapGet("/triangle", () => new Triangle { Color = "red", Sides = 3, Hypotenuse = 5.0 });
 responses.MapGet("/shape", () => new Shape { Color = "blue", Sides = 4 });
 
+#endregion hide
+
 app.MapControllers();
 
 app.Run();
@@ -91,3 +97,15 @@ app.Run();
 // Make Program class public to support snapshot testing
 // against sample app using WebApplicationFactory.
 public partial class Program { }
+
+/// <summary>
+/// Represents a todo item.
+/// </summary>
+public class TestClass
+{
+    /// <summary>
+    /// This is a test property.
+    /// </summary>
+    /// <value></value>
+    public string? TestProperty { get; set; }
+}

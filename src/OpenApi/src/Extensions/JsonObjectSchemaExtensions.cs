@@ -284,4 +284,12 @@ internal static class JsonObjectSchemaExtensions
             schema[OpenApiSchemaKeywords.DiscriminatorMappingKeyword] = mappings;
         }
     }
+
+    internal static void ApplyXmlComments(this JsonObject node, IXmlCommentService xmlCommentService, Type type, string? property = null)
+    {
+        if (xmlCommentService.TryGetXmlComment((type, property), out var summary))
+        {
+            node[OpenApiSchemaKeywords.DescriptionKeyword] = summary;
+        }
+    }
 }
