@@ -243,7 +243,7 @@ internal struct StaticFileContext
     public Task ApplyResponseHeadersAsync(int statusCode)
     {
         // Only clobber the default status (e.g. in cases this a status code pages retry)
-        if (_response.StatusCode == StatusCodes.Status200OK)
+        if (statusCode == StatusCodes.Status200OK)
         {
             _response.StatusCode = statusCode;
         }
